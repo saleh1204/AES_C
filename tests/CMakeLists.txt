@@ -5,12 +5,12 @@ set(HEADERS
 )
 
 set(TEST_SOURCES
-  munit.c
   aes_helper_tests.c
+  munit.c
+  ../src/aes_helper.c
 )
 
 add_executable(aes_helper_tests ${TEST_SOURCES} ${HEADERS})
-target_link_libraries(aes_helper_tests aes_helper)
 
 add_custom_target(test
   COMMAND aes_helper_tests
