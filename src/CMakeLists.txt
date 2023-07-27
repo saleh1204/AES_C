@@ -15,15 +15,12 @@ set(HEADERS
   include/aes_lib.h
 )
 
-foreach(lib IN LISTS LIB_SOURCES)
-  add_library(${lib} ${lib}.c)
-endforeach()
+add_library(aes_helper SHARED aes_helper.c)
+add_library(aes_lib SHARED aes_lib.c aes_helper.c)
 
 add_executable(main ${HEADERS} ${MAIN_SOURCES})
 
-foreach(lib IN LISTS LIB_SOURCES)
-  target_link_libraries(main PRIVATE ${lib})
-endforeach()
+target_link_libraries(main PRIVATE aes_lib)
 
 add_custom_target(run
   COMMAND main

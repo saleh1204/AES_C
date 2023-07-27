@@ -1,7 +1,6 @@
 
-#include <stdio.h>
+#include <aes_helper.h>
 #include "munit.h"
-#include "../src/include/aes_helper.h"
 
 // SubBytes Tests
 static MunitResult subBytesTests(const MunitParameter params[], void *fixture)
@@ -556,7 +555,7 @@ static MunitResult invMixColumnsTests(const MunitParameter params[], void *fixtu
 }
 
 // Add Round Key tests
-static MunitResult addRoundKeyTests(const MunitParameter params[], void *fixture)
+static MunitResult aesEncryptionTests(const MunitParameter params[], void *fixture)
 {
   // Test #1
   // input 5F 72 64 15 57 F5 BC 92 F7 BE 3B 29 1D B9 F9 1A
@@ -732,7 +731,7 @@ static MunitResult addRoundKeyTests(const MunitParameter params[], void *fixture
 }
 
 // Key Expansion tests
-static MunitResult keyExpansionTests(const MunitParameter params[], void *fixture)
+static MunitResult aesDecryptionTests(const MunitParameter params[], void *fixture)
 {
   // Test #1
   // input D6 AA 74 FD D2 AF 72 FA DA A6 78 F1 D6 AB 76 FE
@@ -908,7 +907,7 @@ static MunitTest aes_helper_tests[] = {
     },
     {
         "AddRoundKey Tests",    /* name */
-        addRoundKeyTests,       /* test */
+        aesEncryptionTests,       /* test */
         NULL,                   /* setup */
         NULL,                   /* tear_down */
         MUNIT_TEST_OPTION_NONE, /* options */
@@ -916,7 +915,7 @@ static MunitTest aes_helper_tests[] = {
     },
     {
         "KeyExpansion Tests",   /* name */
-        keyExpansionTests,      /* test */
+        aesDecryptionTests,      /* test */
         NULL,                   /* setup */
         NULL,                   /* tear_down */
         MUNIT_TEST_OPTION_NONE, /* options */
