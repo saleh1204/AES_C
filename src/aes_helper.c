@@ -1,4 +1,4 @@
-#include "include/aes_helper.h"
+#include <aes_helper.h>
 // Constants
 
 // SBOX used for encryption and key expansion
@@ -139,10 +139,6 @@ void mixColumns(uint8_t *inWord0, uint8_t *inWord1, uint8_t *inWord2,
                 uint8_t *inWord3, uint8_t *outWord0, uint8_t *outWord1,
                 uint8_t *outWord2, uint8_t *outWord3)
 {
-  uint32_t R0 = 0x02030101;
-  uint32_t R1 = 0x01020301;
-  uint32_t R2 = 0x01010203;
-  uint32_t R3 = 0x03010102;
 
   uint8_t t, t0, t1, t2, t3;
 
