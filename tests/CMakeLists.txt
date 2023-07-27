@@ -2,8 +2,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src/include)
 link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../build/src)
 
-enable_testing()
-
 set(HEADERS
   munit.h
   ../src/include/aes_helper.h

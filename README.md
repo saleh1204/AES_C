@@ -14,7 +14,7 @@ mkdir build
 cd build 
 cmake ../
 make run  # to run sample application
-make test # to test AES library
+make test # to test AES library (both aes_helper and aes_lib)
 ```
 
 ## Basic Usage of the library
@@ -22,7 +22,7 @@ make test # to test AES library
 Sample Usage of the AES library is shown below and in the `aes_main.c` file. Before encrypting or decrypting data, the keys need to initialized using `aesInitKeys(uint8_t *initial_key, uint8_t verbose)` function. Afterwards, plain texts can be encrypted using `aesEncrypt(uint8_t *plain_text, uint8_t *cipher_text)` function, or cipher texts can be decrypted using `aesEncrypt(uint8_t *plain_text, uint8_t *cipher_text)` function.
 
 ``` c
-#include "include/aes_lib.h"
+#include <aes_lib.h>
 
 int main(int argc, char **argv)
 {

@@ -1,4 +1,3 @@
-#include <aes_helper.h>
 #include <aes_lib.h>
 #include "munit.h"
 
