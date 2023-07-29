@@ -1,6 +1,6 @@
 
-#include <aes_helper.h>
 #include "munit.h"
+#include <aes_helper.h>
 
 // SubBytes Tests
 static MunitResult subBytesTests(const MunitParameter params[], void *fixture)
@@ -41,8 +41,8 @@ static MunitResult shiftRowsTests(const MunitParameter params[], void *fixture)
   uint8_t expected2[4] = {0x09, 0x60, 0xE1, 0x04};
   uint8_t expected3[4] = {0xCD, 0x70, 0xB7, 0x51};
   uint8_t expected4[4] = {0xBA, 0xCA, 0xD0, 0xE7};
-  shiftRows((uint8_t *)input1, (uint8_t *)input2, (uint8_t *)input3, (uint8_t *)input4,
-            (uint8_t *)result1, (uint8_t *)result2, (uint8_t *)result3, (uint8_t *)result4);
+  shiftRows((uint8_t *) input1, (uint8_t *) input2, (uint8_t *) input3, (uint8_t *) input4,
+            (uint8_t *) result1, (uint8_t *) result2, (uint8_t *) result3, (uint8_t *) result4);
   munit_assert_memory_equal(4, result1, expected1);
   munit_assert_memory_equal(4, result2, expected2);
   munit_assert_memory_equal(4, result3, expected3);
@@ -91,8 +91,8 @@ static MunitResult shiftRowsTests(const MunitParameter params[], void *fixture)
   expected4[2] = 0x8B;
   expected4[3] = 0x61;
 
-  shiftRows((uint8_t *)input1, (uint8_t *)input2, (uint8_t *)input3, (uint8_t *)input4,
-            (uint8_t *)result1, (uint8_t *)result2, (uint8_t *)result3, (uint8_t *)result4);
+  shiftRows((uint8_t *) input1, (uint8_t *) input2, (uint8_t *) input3, (uint8_t *) input4,
+            (uint8_t *) result1, (uint8_t *) result2, (uint8_t *) result3, (uint8_t *) result4);
   munit_assert_memory_equal(4, result1, expected1);
   munit_assert_memory_equal(4, result2, expected2);
   munit_assert_memory_equal(4, result3, expected3);
@@ -141,8 +141,8 @@ static MunitResult shiftRowsTests(const MunitParameter params[], void *fixture)
   expected4[2] = 0x0E;
   expected4[3] = 0x2D;
 
-  shiftRows((uint8_t *)input1, (uint8_t *)input2, (uint8_t *)input3, (uint8_t *)input4,
-            (uint8_t *)result1, (uint8_t *)result2, (uint8_t *)result3, (uint8_t *)result4);
+  shiftRows((uint8_t *) input1, (uint8_t *) input2, (uint8_t *) input3, (uint8_t *) input4,
+            (uint8_t *) result1, (uint8_t *) result2, (uint8_t *) result3, (uint8_t *) result4);
   munit_assert_memory_equal(4, result1, expected1);
   munit_assert_memory_equal(4, result2, expected2);
   munit_assert_memory_equal(4, result3, expected3);
@@ -167,8 +167,8 @@ static MunitResult mixColumnsTests(const MunitParameter params[], void *fixture)
   uint8_t expected2[4] = {0x57, 0xF5, 0xBC, 0x92};
   uint8_t expected3[4] = {0xF7, 0xBE, 0x3B, 0x29};
   uint8_t expected4[4] = {0x1D, 0xB9, 0xF9, 0x1A};
-  mixColumns((uint8_t *)input1, (uint8_t *)input2, (uint8_t *)input3, (uint8_t *)input4,
-             (uint8_t *)result1, (uint8_t *)result2, (uint8_t *)result3, (uint8_t *)result4);
+  mixColumns((uint8_t *) input1, (uint8_t *) input2, (uint8_t *) input3, (uint8_t *) input4,
+             (uint8_t *) result1, (uint8_t *) result2, (uint8_t *) result3, (uint8_t *) result4);
   munit_assert_memory_equal(4, result1, expected1);
   munit_assert_memory_equal(4, result2, expected2);
   munit_assert_memory_equal(4, result3, expected3);
@@ -217,8 +217,8 @@ static MunitResult mixColumnsTests(const MunitParameter params[], void *fixture)
   expected4[2] = 0xD0;
   expected4[3] = 0x09;
 
-  mixColumns((uint8_t *)input1, (uint8_t *)input2, (uint8_t *)input3, (uint8_t *)input4,
-             (uint8_t *)result1, (uint8_t *)result2, (uint8_t *)result3, (uint8_t *)result4);
+  mixColumns((uint8_t *) input1, (uint8_t *) input2, (uint8_t *) input3, (uint8_t *) input4,
+             (uint8_t *) result1, (uint8_t *) result2, (uint8_t *) result3, (uint8_t *) result4);
   munit_assert_memory_equal(4, result1, expected1);
   munit_assert_memory_equal(4, result2, expected2);
   munit_assert_memory_equal(4, result3, expected3);
@@ -267,8 +267,8 @@ static MunitResult mixColumnsTests(const MunitParameter params[], void *fixture)
   expected4[2] = 0xF2;
   expected4[3] = 0x56;
 
-  mixColumns((uint8_t *)input1, (uint8_t *)input2, (uint8_t *)input3, (uint8_t *)input4,
-             (uint8_t *)result1, (uint8_t *)result2, (uint8_t *)result3, (uint8_t *)result4);
+  mixColumns((uint8_t *) input1, (uint8_t *) input2, (uint8_t *) input3, (uint8_t *) input4,
+             (uint8_t *) result1, (uint8_t *) result2, (uint8_t *) result3, (uint8_t *) result4);
   munit_assert_memory_equal(4, result1, expected1);
   munit_assert_memory_equal(4, result2, expected2);
   munit_assert_memory_equal(4, result3, expected3);
@@ -317,8 +317,8 @@ static MunitResult invShiftRowsTests(const MunitParameter params[], void *fixtur
   uint8_t expected2[4] = {0x09, 0x53, 0xD0, 0x51};
   uint8_t expected3[4] = {0xCD, 0x60, 0xE0, 0xE7};
   uint8_t expected4[4] = {0xBA, 0x70, 0xE1, 0x8C};
-  invShiftRows((uint8_t *)input1, (uint8_t *)input2, (uint8_t *)input3, (uint8_t *)input4,
-               (uint8_t *)result1, (uint8_t *)result2, (uint8_t *)result3, (uint8_t *)result4);
+  invShiftRows((uint8_t *) input1, (uint8_t *) input2, (uint8_t *) input3, (uint8_t *) input4,
+               (uint8_t *) result1, (uint8_t *) result2, (uint8_t *) result3, (uint8_t *) result4);
   munit_assert_memory_equal(4, result1, expected1);
   munit_assert_memory_equal(4, result2, expected2);
   munit_assert_memory_equal(4, result3, expected3);
@@ -367,8 +367,8 @@ static MunitResult invShiftRowsTests(const MunitParameter params[], void *fixtur
   expected4[2] = 0x73;
   expected4[3] = 0x69;
 
-  invShiftRows((uint8_t *)input1, (uint8_t *)input2, (uint8_t *)input3, (uint8_t *)input4,
-               (uint8_t *)result1, (uint8_t *)result2, (uint8_t *)result3, (uint8_t *)result4);
+  invShiftRows((uint8_t *) input1, (uint8_t *) input2, (uint8_t *) input3, (uint8_t *) input4,
+               (uint8_t *) result1, (uint8_t *) result2, (uint8_t *) result3, (uint8_t *) result4);
   munit_assert_memory_equal(4, result1, expected1);
   munit_assert_memory_equal(4, result2, expected2);
   munit_assert_memory_equal(4, result3, expected3);
@@ -417,8 +417,8 @@ static MunitResult invShiftRowsTests(const MunitParameter params[], void *fixtur
   expected4[2] = 0xFB;
   expected4[3] = 0x68;
 
-  invShiftRows((uint8_t *)input1, (uint8_t *)input2, (uint8_t *)input3, (uint8_t *)input4,
-               (uint8_t *)result1, (uint8_t *)result2, (uint8_t *)result3, (uint8_t *)result4);
+  invShiftRows((uint8_t *) input1, (uint8_t *) input2, (uint8_t *) input3, (uint8_t *) input4,
+               (uint8_t *) result1, (uint8_t *) result2, (uint8_t *) result3, (uint8_t *) result4);
   munit_assert_memory_equal(4, result1, expected1);
   munit_assert_memory_equal(4, result2, expected2);
   munit_assert_memory_equal(4, result3, expected3);
@@ -443,8 +443,8 @@ static MunitResult invMixColumnsTests(const MunitParameter params[], void *fixtu
   uint8_t expected2[4] = {0x09, 0x60, 0xE1, 0x04};
   uint8_t expected3[4] = {0xCD, 0x70, 0xB7, 0x51};
   uint8_t expected4[4] = {0xBA, 0xCA, 0xD0, 0xE7};
-  invMixColumns((uint8_t *)input1, (uint8_t *)input2, (uint8_t *)input3, (uint8_t *)input4,
-                (uint8_t *)result1, (uint8_t *)result2, (uint8_t *)result3, (uint8_t *)result4);
+  invMixColumns((uint8_t *) input1, (uint8_t *) input2, (uint8_t *) input3, (uint8_t *) input4,
+                (uint8_t *) result1, (uint8_t *) result2, (uint8_t *) result3, (uint8_t *) result4);
   munit_assert_memory_equal(4, result1, expected1);
   munit_assert_memory_equal(4, result2, expected2);
   munit_assert_memory_equal(4, result3, expected3);
@@ -493,8 +493,8 @@ static MunitResult invMixColumnsTests(const MunitParameter params[], void *fixtu
   expected4[2] = 0x8B;
   expected4[3] = 0x61;
 
-  invMixColumns((uint8_t *)input1, (uint8_t *)input2, (uint8_t *)input3, (uint8_t *)input4,
-                (uint8_t *)result1, (uint8_t *)result2, (uint8_t *)result3, (uint8_t *)result4);
+  invMixColumns((uint8_t *) input1, (uint8_t *) input2, (uint8_t *) input3, (uint8_t *) input4,
+                (uint8_t *) result1, (uint8_t *) result2, (uint8_t *) result3, (uint8_t *) result4);
   munit_assert_memory_equal(4, result1, expected1);
   munit_assert_memory_equal(4, result2, expected2);
   munit_assert_memory_equal(4, result3, expected3);
@@ -543,8 +543,8 @@ static MunitResult invMixColumnsTests(const MunitParameter params[], void *fixtu
   expected4[2] = 0x0E;
   expected4[3] = 0x2D;
 
-  invMixColumns((uint8_t *)input1, (uint8_t *)input2, (uint8_t *)input3, (uint8_t *)input4,
-                (uint8_t *)result1, (uint8_t *)result2, (uint8_t *)result3, (uint8_t *)result4);
+  invMixColumns((uint8_t *) input1, (uint8_t *) input2, (uint8_t *) input3, (uint8_t *) input4,
+                (uint8_t *) result1, (uint8_t *) result2, (uint8_t *) result3, (uint8_t *) result4);
   munit_assert_memory_equal(4, result1, expected1);
   munit_assert_memory_equal(4, result2, expected2);
   munit_assert_memory_equal(4, result3, expected3);
@@ -574,9 +574,9 @@ static MunitResult aesEncryptionTests(const MunitParameter params[], void *fixtu
   uint8_t expected2[4] = {0x85, 0x5A, 0xCE, 0x68};
   uint8_t expected3[4] = {0x2D, 0x18, 0x43, 0xD8};
   uint8_t expected4[4] = {0xCB, 0x12, 0x8F, 0xE4};
-  addRoundKey((uint8_t *)input1, (uint8_t *)input2, (uint8_t *)input3, (uint8_t *)input4,
-              (uint8_t *)key1, (uint8_t *)key2, (uint8_t *)key3, (uint8_t *)key4,
-              (uint8_t *)result1, (uint8_t *)result2, (uint8_t *)result3, (uint8_t *)result4);
+  addRoundKey((uint8_t *) input1, (uint8_t *) input2, (uint8_t *) input3, (uint8_t *) input4,
+              (uint8_t *) key1, (uint8_t *) key2, (uint8_t *) key3, (uint8_t *) key4,
+              (uint8_t *) result1, (uint8_t *) result2, (uint8_t *) result3, (uint8_t *) result4);
   munit_assert_memory_equal(4, result1, expected1);
   munit_assert_memory_equal(4, result2, expected2);
   munit_assert_memory_equal(4, result3, expected3);
@@ -646,9 +646,9 @@ static MunitResult aesEncryptionTests(const MunitParameter params[], void *fixtu
   expected4[2] = 0x63;
   expected4[3] = 0xF7;
 
-  addRoundKey((uint8_t *)input1, (uint8_t *)input2, (uint8_t *)input3, (uint8_t *)input4,
-              (uint8_t *)key1, (uint8_t *)key2, (uint8_t *)key3, (uint8_t *)key4,
-              (uint8_t *)result1, (uint8_t *)result2, (uint8_t *)result3, (uint8_t *)result4);
+  addRoundKey((uint8_t *) input1, (uint8_t *) input2, (uint8_t *) input3, (uint8_t *) input4,
+              (uint8_t *) key1, (uint8_t *) key2, (uint8_t *) key3, (uint8_t *) key4,
+              (uint8_t *) result1, (uint8_t *) result2, (uint8_t *) result3, (uint8_t *) result4);
   munit_assert_memory_equal(4, result1, expected1);
   munit_assert_memory_equal(4, result2, expected2);
   munit_assert_memory_equal(4, result3, expected3);
@@ -718,9 +718,9 @@ static MunitResult aesEncryptionTests(const MunitParameter params[], void *fixtu
   expected4[2] = 0x4D;
   expected4[3] = 0x17;
 
-  addRoundKey((uint8_t *)input1, (uint8_t *)input2, (uint8_t *)input3, (uint8_t *)input4,
-              (uint8_t *)key1, (uint8_t *)key2, (uint8_t *)key3, (uint8_t *)key4,
-              (uint8_t *)result1, (uint8_t *)result2, (uint8_t *)result3, (uint8_t *)result4);
+  addRoundKey((uint8_t *) input1, (uint8_t *) input2, (uint8_t *) input3, (uint8_t *) input4,
+              (uint8_t *) key1, (uint8_t *) key2, (uint8_t *) key3, (uint8_t *) key4,
+              (uint8_t *) result1, (uint8_t *) result2, (uint8_t *) result3, (uint8_t *) result4);
   munit_assert_memory_equal(4, result1, expected1);
   munit_assert_memory_equal(4, result2, expected2);
   munit_assert_memory_equal(4, result3, expected3);
@@ -745,8 +745,8 @@ static MunitResult aesDecryptionTests(const MunitParameter params[], void *fixtu
   uint8_t expected2[4] = {0x64, 0x3D, 0xBD, 0xF1};
   uint8_t expected3[4] = {0xBE, 0x9B, 0xC5, 0x00};
   uint8_t expected4[4] = {0x68, 0x30, 0xB3, 0xFE};
-  keyExpansion((uint8_t *)input1, (uint8_t *)input2, (uint8_t *)input3, (uint8_t *)input4, 1,
-               (uint8_t *)result1, (uint8_t *)result2, (uint8_t *)result3, (uint8_t *)result4);
+  keyExpansion((uint8_t *) input1, (uint8_t *) input2, (uint8_t *) input3, (uint8_t *) input4, 1,
+               (uint8_t *) result1, (uint8_t *) result2, (uint8_t *) result3, (uint8_t *) result4);
   munit_assert_memory_equal(4, result1, expected1);
   munit_assert_memory_equal(4, result2, expected2);
   munit_assert_memory_equal(4, result3, expected3);
@@ -795,8 +795,8 @@ static MunitResult aesDecryptionTests(const MunitParameter params[], void *fixtu
   expected4[2] = 0xBF;
   expected4[3] = 0x41;
 
-  keyExpansion((uint8_t *)input1, (uint8_t *)input2, (uint8_t *)input3, (uint8_t *)input4, 2,
-               (uint8_t *)result1, (uint8_t *)result2, (uint8_t *)result3, (uint8_t *)result4);
+  keyExpansion((uint8_t *) input1, (uint8_t *) input2, (uint8_t *) input3, (uint8_t *) input4, 2,
+               (uint8_t *) result1, (uint8_t *) result2, (uint8_t *) result3, (uint8_t *) result4);
   munit_assert_memory_equal(4, result1, expected1);
   munit_assert_memory_equal(4, result2, expected2);
   munit_assert_memory_equal(4, result3, expected3);
@@ -845,8 +845,8 @@ static MunitResult aesDecryptionTests(const MunitParameter params[], void *fixtu
   expected4[2] = 0x8D;
   expected4[3] = 0xFD;
 
-  keyExpansion((uint8_t *)input1, (uint8_t *)input2, (uint8_t *)input3, (uint8_t *)input4, 3,
-               (uint8_t *)result1, (uint8_t *)result2, (uint8_t *)result3, (uint8_t *)result4);
+  keyExpansion((uint8_t *) input1, (uint8_t *) input2, (uint8_t *) input3, (uint8_t *) input4, 3,
+               (uint8_t *) result1, (uint8_t *) result2, (uint8_t *) result3, (uint8_t *) result4);
   munit_assert_memory_equal(4, result1, expected1);
   munit_assert_memory_equal(4, result2, expected2);
   munit_assert_memory_equal(4, result3, expected3);
@@ -856,74 +856,73 @@ static MunitResult aesDecryptionTests(const MunitParameter params[], void *fixtu
   return MUNIT_OK;
 }
 
-static MunitTest aes_helper_tests[] = {
-    {
-        "SubBytes Tests",       /* name */
-        subBytesTests,          /* test */
-        NULL,                   /* setup */
-        NULL,                   /* tear_down */
-        MUNIT_TEST_OPTION_NONE, /* options */
-        NULL                    /* parameters */
-    },
-    {
-        "ShiftRows Tests",      /* name */
-        shiftRowsTests,         /* test */
-        NULL,                   /* setup */
-        NULL,                   /* tear_down */
-        MUNIT_TEST_OPTION_NONE, /* options */
-        NULL                    /* parameters */
-    },
-    {
-        "MixColumn Tests",      /* name */
-        mixColumnsTests,        /* test */
-        NULL,                   /* setup */
-        NULL,                   /* tear_down */
-        MUNIT_TEST_OPTION_NONE, /* options */
-        NULL                    /* parameters */
-    },
-    {
-        "InvSubBytes Tests",    /* name */
-        invSubBytesTests,       /* test */
-        NULL,                   /* setup */
-        NULL,                   /* tear_down */
-        MUNIT_TEST_OPTION_NONE, /* options */
-        NULL                    /* parameters */
-    },
-    {
-        "InvShiftRows Tests",   /* name */
-        invShiftRowsTests,      /* test */
-        NULL,                   /* setup */
-        NULL,                   /* tear_down */
-        MUNIT_TEST_OPTION_NONE, /* options */
-        NULL                    /* parameters */
-    },
-    {
-        "InvMixColumn Tests",   /* name */
-        invMixColumnsTests,     /* test */
-        NULL,                   /* setup */
-        NULL,                   /* tear_down */
-        MUNIT_TEST_OPTION_NONE, /* options */
-        NULL                    /* parameters */
-    },
-    {
-        "AddRoundKey Tests",    /* name */
-        aesEncryptionTests,       /* test */
-        NULL,                   /* setup */
-        NULL,                   /* tear_down */
-        MUNIT_TEST_OPTION_NONE, /* options */
-        NULL                    /* parameters */
-    },
-    {
-        "KeyExpansion Tests",   /* name */
-        aesDecryptionTests,      /* test */
-        NULL,                   /* setup */
-        NULL,                   /* tear_down */
-        MUNIT_TEST_OPTION_NONE, /* options */
-        NULL                    /* parameters */
-    },
-    /* Mark the end of the array with an entry where the test
-     * function is NULL */
-    {NULL, NULL, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL}};
+static MunitTest aes_helper_tests[] = {{
+                                           "SubBytes Tests",       /* name */
+                                           subBytesTests,          /* test */
+                                           NULL,                   /* setup */
+                                           NULL,                   /* tear_down */
+                                           MUNIT_TEST_OPTION_NONE, /* options */
+                                           NULL                    /* parameters */
+                                       },
+                                       {
+                                           "ShiftRows Tests",      /* name */
+                                           shiftRowsTests,         /* test */
+                                           NULL,                   /* setup */
+                                           NULL,                   /* tear_down */
+                                           MUNIT_TEST_OPTION_NONE, /* options */
+                                           NULL                    /* parameters */
+                                       },
+                                       {
+                                           "MixColumn Tests",      /* name */
+                                           mixColumnsTests,        /* test */
+                                           NULL,                   /* setup */
+                                           NULL,                   /* tear_down */
+                                           MUNIT_TEST_OPTION_NONE, /* options */
+                                           NULL                    /* parameters */
+                                       },
+                                       {
+                                           "InvSubBytes Tests",    /* name */
+                                           invSubBytesTests,       /* test */
+                                           NULL,                   /* setup */
+                                           NULL,                   /* tear_down */
+                                           MUNIT_TEST_OPTION_NONE, /* options */
+                                           NULL                    /* parameters */
+                                       },
+                                       {
+                                           "InvShiftRows Tests",   /* name */
+                                           invShiftRowsTests,      /* test */
+                                           NULL,                   /* setup */
+                                           NULL,                   /* tear_down */
+                                           MUNIT_TEST_OPTION_NONE, /* options */
+                                           NULL                    /* parameters */
+                                       },
+                                       {
+                                           "InvMixColumn Tests",   /* name */
+                                           invMixColumnsTests,     /* test */
+                                           NULL,                   /* setup */
+                                           NULL,                   /* tear_down */
+                                           MUNIT_TEST_OPTION_NONE, /* options */
+                                           NULL                    /* parameters */
+                                       },
+                                       {
+                                           "AddRoundKey Tests",    /* name */
+                                           aesEncryptionTests,     /* test */
+                                           NULL,                   /* setup */
+                                           NULL,                   /* tear_down */
+                                           MUNIT_TEST_OPTION_NONE, /* options */
+                                           NULL                    /* parameters */
+                                       },
+                                       {
+                                           "KeyExpansion Tests",   /* name */
+                                           aesDecryptionTests,     /* test */
+                                           NULL,                   /* setup */
+                                           NULL,                   /* tear_down */
+                                           MUNIT_TEST_OPTION_NONE, /* options */
+                                           NULL                    /* parameters */
+                                       },
+                                       /* Mark the end of the array with an entry where the test
+                                        * function is NULL */
+                                       {NULL, NULL, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL}};
 
 /* Now we'll actually declare the test suite.  You could do this in
  * the main function, or on the heap, or whatever you want. */
@@ -933,7 +932,7 @@ static const MunitSuite test_suite = {
      * Note that, while it doesn't really matter for the top-level
      * suite, NULL signal the end of an array of tests; you should use
      * an empty string ("") instead. */
-    (char *)"",
+    (char *) "",
     /* The first parameter is the array of test suites. */
     aes_helper_tests,
     /* In addition to containing test cases, suites can contain other
@@ -955,5 +954,5 @@ int main(int argc, char *argv[MUNIT_ARRAY_PARAM(argc + 1)])
 {
   printf("AES Helper Functions Tests\n");
   // Runnin unit tests for aes helper library
-  return munit_suite_main(&test_suite, (void *)"aes_helper tests", argc, argv);
+  return munit_suite_main(&test_suite, (void *) "aes_helper tests", argc, argv);
 }

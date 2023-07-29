@@ -23,11 +23,11 @@ int main(int argc, char **argv)
   // Initialize keys for all rounds
   aesInitKeys(key, verbose);
   // Encrypt given plain text with pre-initialized keys
-  aesEncrypt((uint8_t *)&plainText, (uint8_t *)&cipherText, verbose);
+  aesEncrypt((uint8_t *) &plainText, (uint8_t *) &cipherText, verbose);
   printVector("\nciphertext   ", cipherText, 16);
   printVector("expected     ", expectedCipher, 16);
   // Decrypt given cipher text with pre-initialized keys
-  aesDecrypt((uint8_t *)&cipherText, (uint8_t *)&decrpted, verbose);
+  aesDecrypt((uint8_t *) &cipherText, (uint8_t *) &decrpted, verbose);
   printVector("\ndecrypted    ", decrpted, 16);
   printVector("expected     ", plainText, 16);
   printf("\033[0;32m--------------------------- Done ---------------------------\033[0;37m\n\n");

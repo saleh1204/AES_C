@@ -1,9 +1,9 @@
-#include <aes_lib.h>
 #include "munit.h"
+#include <aes_lib.h>
 
 // AES Encryption tests
-static MunitResult aesEncryptionTests(const MunitParameter params[],
-                                      void *fixture) {
+static MunitResult aesEncryptionTests(const MunitParameter params[], void *fixture)
+{
   // Test #1
   // Initial plain text to be encrypted
   uint8_t plainText[16] = {0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77,
@@ -22,7 +22,7 @@ static MunitResult aesEncryptionTests(const MunitParameter params[],
   // Initialize keys for all rounds
   aesInitKeys(key, verbose);
   // Encrypt given plain text with pre-initialized keys
-  aesEncrypt((uint8_t *)&plainText, (uint8_t *)&cipherText, verbose);
+  aesEncrypt((uint8_t *) &plainText, (uint8_t *) &cipherText, verbose);
   munit_assert_memory_equal(16, cipherText, expectedCipher);
 
   // if all tests passed, return ok
@@ -30,8 +30,8 @@ static MunitResult aesEncryptionTests(const MunitParameter params[],
 }
 
 // AES Decryption tests
-static MunitResult aesDecryptionTests(const MunitParameter params[],
-                                      void *fixture) {
+static MunitResult aesDecryptionTests(const MunitParameter params[], void *fixture)
+{
   // Test #1
   // array to hold a predefined cipher text to be decrypted
   uint8_t cipher[16] = {0x69, 0xC4, 0xE0, 0xD8, 0x6A, 0x7B, 0x04, 0x30,
@@ -43,40 +43,38 @@ static MunitResult aesDecryptionTests(const MunitParameter params[],
   uint8_t decrpted[16] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                           0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
   // Expected Plain text output
-  uint8_t expectedPlainText[16] = {0x00, 0x11, 0x22, 0x33, 0x44, 0x55,
-                                   0x66, 0x77, 0x88, 0x99, 0xaa, 0xbb,
-                                   0xcc, 0xdd, 0xee, 0xff};
+  uint8_t expectedPlainText[16] = {0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77,
+                                   0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff};
   // Control verbosity of the AES library calls
   uint8_t verbose = 0;
   // Initialize keys for all rounds
   aesInitKeys(key, verbose);
   // Decrypt given cipher text with pre-initialized keys
-  aesDecrypt((uint8_t *)&cipher, (uint8_t *)&decrpted, verbose);
+  aesDecrypt((uint8_t *) &cipher, (uint8_t *) &decrpted, verbose);
   munit_assert_memory_equal(16, decrpted, expectedPlainText);
   // if all tests passed, return ok
   return MUNIT_OK;
 }
 
-static MunitTest aes_lib_tests[] = {
-    {
-        "AES Encryption",       /* name */
-        aesEncryptionTests,     /* test */
-        NULL,                   /* setup */
-        NULL,                   /* tear_down */
-        MUNIT_TEST_OPTION_NONE, /* options */
-        NULL                    /* parameters */
-    },
-    {
-        "AES Decryption",       /* name */
-        aesDecryptionTests,     /* test */
-        NULL,                   /* setup */
-        NULL,                   /* tear_down */
-        MUNIT_TEST_OPTION_NONE, /* options */
-        NULL                    /* parameters */
-    },
-    /* Mark the end of the array with an entry where the test
-     * function is NULL */
-    {NULL, NULL, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL}};
+static MunitTest aes_lib_tests[] = {{
+                                        "AES Encryption",       /* name */
+                                        aesEncryptionTests,     /* test */
+                                        NULL,                   /* setup */
+                                        NULL,                   /* tear_down */
+                                        MUNIT_TEST_OPTION_NONE, /* options */
+                                        NULL                    /* parameters */
+                                    },
+                                    {
+                                        "AES Decryption",       /* name */
+                                        aesDecryptionTests,     /* test */
+                                        NULL,                   /* setup */
+                                        NULL,                   /* tear_down */
+                                        MUNIT_TEST_OPTION_NONE, /* options */
+                                        NULL                    /* parameters */
+                                    },
+                                    /* Mark the end of the array with an entry where the test
+                                     * function is NULL */
+                                    {NULL, NULL, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL}};
 
 /* Now we'll actually declare the test suite.  You could do this in
  * the main function, or on the heap, or whatever you want. */
@@ -86,7 +84,7 @@ static const MunitSuite test_suite = {
      * Note that, while it doesn't really matter for the top-level
      * suite, NULL signal the end of an array of tests; you should use
      * an empty string ("") instead. */
-    (char *)"",
+    (char *) "",
     /* The first parameter is the array of test suites. */
     aes_lib_tests,
     /* In addition to containing test cases, suites can contain other
@@ -104,8 +102,9 @@ static const MunitSuite test_suite = {
     /* Just like MUNIT_TEST_OPTION_NONE, you can provide
      * MUNIT_SUITE_OPTION_NONE or 0 to use the default settings. */
     MUNIT_SUITE_OPTION_NONE};
-int main(int argc, char *argv[MUNIT_ARRAY_PARAM(argc + 1)]) {
+int main(int argc, char *argv[MUNIT_ARRAY_PARAM(argc + 1)])
+{
   printf("AES Library Functions Tests\n");
   // Runnin unit tests for aes helper library
-  return munit_suite_main(&test_suite, (void *)"aes_lib tests", argc, argv);
+  return munit_suite_main(&test_suite, (void *) "aes_lib tests", argc, argv);
 }

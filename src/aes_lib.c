@@ -18,10 +18,10 @@ void aesInitKeys(uint8_t *initialKey, uint8_t verbose)
   }
   for (uint8_t i = 0; i <= 9; i++)
   {
-    keyExpansion((uint8_t *)(&keys[i][0]), (uint8_t *)(&keys[i][4]),
-                 (uint8_t *)(&keys[i][8]), (uint8_t *)(&keys[i][12]), i,
-                 (uint8_t *)(&keys[i + 1][0]), (uint8_t *)(&keys[i + 1][4]),
-                 (uint8_t *)(&keys[i + 1][8]), (uint8_t *)(&keys[i + 1][12]));
+    keyExpansion((uint8_t *) (&keys[i][0]), (uint8_t *) (&keys[i][4]), (uint8_t *) (&keys[i][8]),
+                 (uint8_t *) (&keys[i][12]), i, (uint8_t *) (&keys[i + 1][0]),
+                 (uint8_t *) (&keys[i + 1][4]), (uint8_t *) (&keys[i + 1][8]),
+                 (uint8_t *) (&keys[i + 1][12]));
     if (verbose == 1)
     {
       printf("keys[%x]      ", i + 1);
@@ -49,12 +49,12 @@ void aesEncrypt(uint8_t *plainText, uint8_t *cipherText, uint8_t verbose)
     printVector("round[0].k   ", keys[0], 16);
   }
   // Pre-Rounds (Round 0)
-  addRoundKey((uint8_t *)(&plainTextTemp[0]), (uint8_t *)(&plainTextTemp[4]),
-              (uint8_t *)(&plainTextTemp[8]), (uint8_t *)(&plainTextTemp[12]),
-              (uint8_t *)(&keys[0][0]), (uint8_t *)(&keys[0][4]),
-              (uint8_t *)(&keys[0][8]), (uint8_t *)(&keys[0][12]),
-              (uint8_t *)(&plainTextTemp[0]), (uint8_t *)(&plainTextTemp[4]),
-              (uint8_t *)(&plainTextTemp[8]), (uint8_t *)(&plainTextTemp[12]));
+  addRoundKey((uint8_t *) (&plainTextTemp[0]), (uint8_t *) (&plainTextTemp[4]),
+              (uint8_t *) (&plainTextTemp[8]), (uint8_t *) (&plainTextTemp[12]),
+              (uint8_t *) (&keys[0][0]), (uint8_t *) (&keys[0][4]), (uint8_t *) (&keys[0][8]),
+              (uint8_t *) (&keys[0][12]), (uint8_t *) (&plainTextTemp[0]),
+              (uint8_t *) (&plainTextTemp[4]), (uint8_t *) (&plainTextTemp[8]),
+              (uint8_t *) (&plainTextTemp[12]));
 
   // Rounds 1 to 10
   for (uint8_t i = 1; i <= 10; i++)
@@ -65,20 +65,20 @@ void aesEncrypt(uint8_t *plainText, uint8_t *cipherText, uint8_t verbose)
       printVector(".in  ", plainTextTemp, 16);
     }
     // First stage: SubBytes
-    subWord((uint8_t *)(&plainTextTemp[0]), (uint8_t *)(&plainTextTemp[0]));
-    subWord((uint8_t *)(&plainTextTemp[4]), (uint8_t *)(&plainTextTemp[4]));
-    subWord((uint8_t *)(&plainTextTemp[8]), (uint8_t *)(&plainTextTemp[8]));
-    subWord((uint8_t *)(&plainTextTemp[12]), (uint8_t *)(&plainTextTemp[12]));
+    subWord((uint8_t *) (&plainTextTemp[0]), (uint8_t *) (&plainTextTemp[0]));
+    subWord((uint8_t *) (&plainTextTemp[4]), (uint8_t *) (&plainTextTemp[4]));
+    subWord((uint8_t *) (&plainTextTemp[8]), (uint8_t *) (&plainTextTemp[8]));
+    subWord((uint8_t *) (&plainTextTemp[12]), (uint8_t *) (&plainTextTemp[12]));
     if (verbose == 1)
     {
       printf("round[%x]", i);
       printVector(".sb  ", plainTextTemp, 16);
     }
     // Second Stage: shiftRows
-    shiftRows((uint8_t *)(&plainTextTemp[0]), (uint8_t *)(&plainTextTemp[4]),
-              (uint8_t *)(&plainTextTemp[8]), (uint8_t *)(&plainTextTemp[12]),
-              (uint8_t *)(&plainTextTemp[0]), (uint8_t *)(&plainTextTemp[4]),
-              (uint8_t *)(&plainTextTemp[8]), (uint8_t *)(&plainTextTemp[12]));
+    shiftRows((uint8_t *) (&plainTextTemp[0]), (uint8_t *) (&plainTextTemp[4]),
+              (uint8_t *) (&plainTextTemp[8]), (uint8_t *) (&plainTextTemp[12]),
+              (uint8_t *) (&plainTextTemp[0]), (uint8_t *) (&plainTextTemp[4]),
+              (uint8_t *) (&plainTextTemp[8]), (uint8_t *) (&plainTextTemp[12]));
     if (verbose == 1)
     {
       printf("round[%x]", i);
@@ -87,11 +87,10 @@ void aesEncrypt(uint8_t *plainText, uint8_t *cipherText, uint8_t verbose)
     // Third Stage: Mix Column only if it is not the last round
     if (i != 10)
     {
-      mixColumns(
-          (uint8_t *)(&plainTextTemp[0]), (uint8_t *)(&plainTextTemp[4]),
-          (uint8_t *)(&plainTextTemp[8]), (uint8_t *)(&plainTextTemp[12]),
-          (uint8_t *)(&plainTextTemp[0]), (uint8_t *)(&plainTextTemp[4]),
-          (uint8_t *)(&plainTextTemp[8]), (uint8_t *)(&plainTextTemp[12]));
+      mixColumns((uint8_t *) (&plainTextTemp[0]), (uint8_t *) (&plainTextTemp[4]),
+                 (uint8_t *) (&plainTextTemp[8]), (uint8_t *) (&plainTextTemp[12]),
+                 (uint8_t *) (&plainTextTemp[0]), (uint8_t *) (&plainTextTemp[4]),
+                 (uint8_t *) (&plainTextTemp[8]), (uint8_t *) (&plainTextTemp[12]));
       if (verbose == 1)
       {
         printf("round[%x]", i);
@@ -104,13 +103,12 @@ void aesEncrypt(uint8_t *plainText, uint8_t *cipherText, uint8_t verbose)
       printf("round[%x]", i);
       printVector(".k   ", keys[i], 16);
     }
-    addRoundKey((uint8_t *)(&plainTextTemp[0]), (uint8_t *)(&plainTextTemp[4]),
-                (uint8_t *)(&plainTextTemp[8]), (uint8_t *)(&plainTextTemp[12]),
-                (uint8_t *)(&keys[i][0]), (uint8_t *)(&keys[i][4]),
-                (uint8_t *)(&keys[i][8]), (uint8_t *)(&keys[i][12]),
-                (uint8_t *)(&plainTextTemp[0]), (uint8_t *)(&plainTextTemp[4]),
-                (uint8_t *)(&plainTextTemp[8]),
-                (uint8_t *)(&plainTextTemp[12]));
+    addRoundKey((uint8_t *) (&plainTextTemp[0]), (uint8_t *) (&plainTextTemp[4]),
+                (uint8_t *) (&plainTextTemp[8]), (uint8_t *) (&plainTextTemp[12]),
+                (uint8_t *) (&keys[i][0]), (uint8_t *) (&keys[i][4]), (uint8_t *) (&keys[i][8]),
+                (uint8_t *) (&keys[i][12]), (uint8_t *) (&plainTextTemp[0]),
+                (uint8_t *) (&plainTextTemp[4]), (uint8_t *) (&plainTextTemp[8]),
+                (uint8_t *) (&plainTextTemp[12]));
   }
   // Copying the output encrypted text to cipher variable
   for (uint8_t i = 0; i < 16; i++)
@@ -140,12 +138,12 @@ void aesDecrypt(uint8_t *cipherText, uint8_t *plainText, uint8_t verbose)
     printVector(".k   ", keys[10], 16);
   }
   // Pre-Rounds (Round 0)
-  addRoundKey((uint8_t *)(&cipherTextTemp[0]), (uint8_t *)(&cipherTextTemp[4]),
-              (uint8_t *)(&cipherTextTemp[8]), (uint8_t *)(&cipherTextTemp[12]),
-              (uint8_t *)(&keys[10][0]), (uint8_t *)(&keys[10][4]),
-              (uint8_t *)(&keys[10][8]), (uint8_t *)(&keys[10][12]),
-              (uint8_t *)(&cipherTextTemp[0]), (uint8_t *)(&cipherTextTemp[4]),
-              (uint8_t *)(&cipherTextTemp[8]), (uint8_t *)(&cipherTextTemp[12]));
+  addRoundKey((uint8_t *) (&cipherTextTemp[0]), (uint8_t *) (&cipherTextTemp[4]),
+              (uint8_t *) (&cipherTextTemp[8]), (uint8_t *) (&cipherTextTemp[12]),
+              (uint8_t *) (&keys[10][0]), (uint8_t *) (&keys[10][4]), (uint8_t *) (&keys[10][8]),
+              (uint8_t *) (&keys[10][12]), (uint8_t *) (&cipherTextTemp[0]),
+              (uint8_t *) (&cipherTextTemp[4]), (uint8_t *) (&cipherTextTemp[8]),
+              (uint8_t *) (&cipherTextTemp[12]));
 
   // Rounds 1 to 10
   for (uint8_t i = 1; i <= 10; i++)
@@ -156,10 +154,10 @@ void aesDecrypt(uint8_t *cipherText, uint8_t *plainText, uint8_t verbose)
       printVector(".in  ", cipherTextTemp, 16);
     }
     // First Stage: invShiftRows
-    invShiftRows((uint8_t *)(&cipherTextTemp[0]), (uint8_t *)(&cipherTextTemp[4]),
-                 (uint8_t *)(&cipherTextTemp[8]), (uint8_t *)(&cipherTextTemp[12]),
-                 (uint8_t *)(&cipherTextTemp[0]), (uint8_t *)(&cipherTextTemp[4]),
-                 (uint8_t *)(&cipherTextTemp[8]), (uint8_t *)(&cipherTextTemp[12]));
+    invShiftRows((uint8_t *) (&cipherTextTemp[0]), (uint8_t *) (&cipherTextTemp[4]),
+                 (uint8_t *) (&cipherTextTemp[8]), (uint8_t *) (&cipherTextTemp[12]),
+                 (uint8_t *) (&cipherTextTemp[0]), (uint8_t *) (&cipherTextTemp[4]),
+                 (uint8_t *) (&cipherTextTemp[8]), (uint8_t *) (&cipherTextTemp[12]));
     if (verbose == 1)
     {
       printf("round[%x]", i);
@@ -167,10 +165,10 @@ void aesDecrypt(uint8_t *cipherText, uint8_t *plainText, uint8_t verbose)
     }
 
     // Second stage: InvSubBytes
-    invSubWord((uint8_t *)(&cipherTextTemp[0]), (uint8_t *)(&cipherTextTemp[0]));
-    invSubWord((uint8_t *)(&cipherTextTemp[4]), (uint8_t *)(&cipherTextTemp[4]));
-    invSubWord((uint8_t *)(&cipherTextTemp[8]), (uint8_t *)(&cipherTextTemp[8]));
-    invSubWord((uint8_t *)(&cipherTextTemp[12]), (uint8_t *)(&cipherTextTemp[12]));
+    invSubWord((uint8_t *) (&cipherTextTemp[0]), (uint8_t *) (&cipherTextTemp[0]));
+    invSubWord((uint8_t *) (&cipherTextTemp[4]), (uint8_t *) (&cipherTextTemp[4]));
+    invSubWord((uint8_t *) (&cipherTextTemp[8]), (uint8_t *) (&cipherTextTemp[8]));
+    invSubWord((uint8_t *) (&cipherTextTemp[12]), (uint8_t *) (&cipherTextTemp[12]));
     if (verbose == 1)
     {
       printf("round[%x]", i);
@@ -183,13 +181,12 @@ void aesDecrypt(uint8_t *cipherText, uint8_t *plainText, uint8_t verbose)
       printf("round[%x]", i);
       printVector(".k   ", keys[10 - i], 16);
     }
-    addRoundKey((uint8_t *)(&cipherTextTemp[0]), (uint8_t *)(&cipherTextTemp[4]),
-                (uint8_t *)(&cipherTextTemp[8]), (uint8_t *)(&cipherTextTemp[12]),
-                (uint8_t *)(&keys[10 - i][0]), (uint8_t *)(&keys[10 - i][4]),
-                (uint8_t *)(&keys[10 - i][8]), (uint8_t *)(&keys[10 - i][12]),
-                (uint8_t *)(&cipherTextTemp[0]), (uint8_t *)(&cipherTextTemp[4]),
-                (uint8_t *)(&cipherTextTemp[8]),
-                (uint8_t *)(&cipherTextTemp[12]));
+    addRoundKey((uint8_t *) (&cipherTextTemp[0]), (uint8_t *) (&cipherTextTemp[4]),
+                (uint8_t *) (&cipherTextTemp[8]), (uint8_t *) (&cipherTextTemp[12]),
+                (uint8_t *) (&keys[10 - i][0]), (uint8_t *) (&keys[10 - i][4]),
+                (uint8_t *) (&keys[10 - i][8]), (uint8_t *) (&keys[10 - i][12]),
+                (uint8_t *) (&cipherTextTemp[0]), (uint8_t *) (&cipherTextTemp[4]),
+                (uint8_t *) (&cipherTextTemp[8]), (uint8_t *) (&cipherTextTemp[12]));
     if (verbose == 1)
     {
       printf("round[%x]", i);
@@ -198,11 +195,10 @@ void aesDecrypt(uint8_t *cipherText, uint8_t *plainText, uint8_t verbose)
     // Fourth Stage: Inverse Mix Column only if it is not the last round
     if (i != 10)
     {
-      invMixColumns(
-          (uint8_t *)(&cipherTextTemp[0]), (uint8_t *)(&cipherTextTemp[4]),
-          (uint8_t *)(&cipherTextTemp[8]), (uint8_t *)(&cipherTextTemp[12]),
-          (uint8_t *)(&cipherTextTemp[0]), (uint8_t *)(&cipherTextTemp[4]),
-          (uint8_t *)(&cipherTextTemp[8]), (uint8_t *)(&cipherTextTemp[12]));
+      invMixColumns((uint8_t *) (&cipherTextTemp[0]), (uint8_t *) (&cipherTextTemp[4]),
+                    (uint8_t *) (&cipherTextTemp[8]), (uint8_t *) (&cipherTextTemp[12]),
+                    (uint8_t *) (&cipherTextTemp[0]), (uint8_t *) (&cipherTextTemp[4]),
+                    (uint8_t *) (&cipherTextTemp[8]), (uint8_t *) (&cipherTextTemp[12]));
       if (verbose == 1)
       {
         printf("round[%x]", i);
