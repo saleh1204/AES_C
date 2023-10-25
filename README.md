@@ -1,6 +1,5 @@
 AES Implementation in C Programming Language
 ===========================
-[![cov](https://saleh1204.github.io/AES_C/badges/coverage.svg)](https://github.com/saleh1204/AES_C/actions)
 ## What Is This?
 ------------
 This is a simple and basic implementation of AES Cryptographic algorithm in C Programming Language. This implements Electronic codebook (ECB) mode of AES, where each data block is encrypted/decrypted separately. Other modes can be used on top of this library. It is highly portable where it does not require external libraries or dynamic memory allocation (i.e. malloc) which makes it perfect for embedded systems and light weight applications. It does not depend on any external library for compiling the sources. It only requires `<stdint.h>` for `uint8_t` data type and `<stdio.h>` for verbose output (i.e. `printf`) of the encryption/decryption stages.  
